@@ -1,0 +1,11 @@
+# C++ Binarios
+*.out
+*.o
+*.exe
+
+# Python Cache
+__pycache__/
+*.py[cod]
+
+# Configuración de Editor (específico para tu captura)
+.vscode/
