@@ -12,3 +12,6 @@ ProyectosPrivados/
 
 # Configuración de Editor (específico para tu captura)
 .vscode/
+
+# Lo que hace este archivo es listar los tipos de archivos que el repositorio va a ignorar
+# Es para que no se les descargue ningun ejecutable :)
