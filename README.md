@@ -1,4 +1,4 @@
-Este repositorio contiene apuntes y ejericios de programacion de las Experiencias Educativas
+Este repositorio contiene apuntes y ejercicios de programación de las Experiencias Educativas
 - Introducción a la Programación
 - Estructuras de Datos
 
