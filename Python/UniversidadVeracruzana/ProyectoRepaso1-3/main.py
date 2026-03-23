@@ -21,9 +21,9 @@ while not salir:
         case 2:
             print(f"La cadena pasada a mayúsculas es: {instancia.a_mayusculas()}")
         case 3:
-            inicio = int(input(f"Por favor inserte desde que posición de la cadena desea empezar a extraer la subcadena.>"))
-            fin = int(input(f"Por favor inserte hasta que posición de la cadena desea extraer.>"))
-            paso = int(input(f"Por favor inserte el paso con el que se extraerán los caracteres.>"))
+            inicio = int(input(f"Inicio.>"))
+            fin = int(input(f"Fin.>"))
+            paso = int(input(f"Paso.>"))
             
             print(f"Su subcadena resultante es: {instancia.subcadena(inicio, fin, paso)}")
         case 0:
