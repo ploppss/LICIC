@@ -43,7 +43,7 @@ cadena_principal = "Hola mundo, hola Python"
 pos= cadena_principal.find("hola")
 print (pos)# La posición donde empieza la cadena es la número 12
 
-pos = cadena_principal.fid("hola", 11)
+pos = cadena_principal.find("hola", 11)
 # Ahora empieza a buscar desde un índice antes de la coincidencia
 
 ####################
