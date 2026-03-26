@@ -21,10 +21,18 @@ while not salir:
         case 2:
             print(f"La cadena pasada a mayúsculas es: {instancia.a_mayusculas()}")
         case 3:
-            inicio = int(input(f"Inicio.>"))
-            fin = int(input(f"Fin.>"))
-            paso = int(input(f"Paso.>"))
-            
-            print(f"Su subcadena resultante es: {instancia.subcadena(inicio, fin, paso)}")
+            try:
+                inicio = int(input(f"Inicio.>"))
+                fin = int(input(f"Fin.>"))
+                paso = input(f"Paso.>")
+                
+                if paso.strip() == "":
+                    paso = 1
+                else:
+                    paso = int(paso)
+                    
+                print(f"Su subcadena resultante es: {instancia.subcadena(inicio, fin, paso)}")
+            except ValueError:
+                print(f"ERROR. Por favor inserte solo números enteros")
         case 0:
             salir = True
