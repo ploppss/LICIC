@@ -200,8 +200,7 @@ float calificacion;
     }
 
     cout<< "Calculando calificación . . ."<< endl;
-    system("pause");
-
+    
     calificacion= (aciertos*10)/30;
     
     cout<< "Su calificación fue "<< calificacion<< " obtuvo "<< aciertos<< " de 30 aciertos."<< endl;

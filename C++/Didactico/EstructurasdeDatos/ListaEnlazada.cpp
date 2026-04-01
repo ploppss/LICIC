@@ -14,7 +14,7 @@ class LinkedList{
             }
         };
 
-    Nodo* head;
+        Nodo* head;
 
     public:
         // Constructor de la clase
