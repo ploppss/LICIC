@@ -15,3 +15,6 @@ lista.imprimir_longitud()
 lista.imprimir_lista()
 
 lista.imprimir_lista_direcciones()
+
+lista.buscar_nodo_valor(80)
+lista.buscar_nodo_valor(40)

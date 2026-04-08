@@ -90,7 +90,7 @@ class ListaEnlazada:
             else:
                 temp = iterador.ptr
                 iterador.ptr = temp.ptr
-                del temp    
+                del temp
                                   
     def imprimir_lista(self):
         
@@ -101,8 +101,60 @@ class ListaEnlazada:
             print(f"Posición:[{i}]--VALOR:[{iterador.valor}]", end="===>")
             iterador = iterador.ptr
             i += 1
-
-        print("None")    
+        print("None")
+    
+    def buscar_nodo_valor(self, valor):
+        iterador = self.__head
+        i = 0
+        while iterador is not None:
+            if iterador.valor == valor:
+                print(f"Elemento encontrado en la posición {i+1}, valor: {iterador.valor}")
+                break
+            else:
+                iterador = iterador.ptr
+                i += 1 
+        if iterador is None:
+            print(f"ERROR. Elemento no encontrado, por favor corrobore el valor que desea buscar.")
+            print(f"Los elementos dentro de la lista son:")
+            self.imprimir_lista()
+            
+    def buscar_nodo_indice(self, posicion):
+        if posicion <= 0:
+            print(f"ERROR. Por favor inserta una posición válida mayor a 0.")
+            return
+        iterador = self.__head
+        i = 1
+        while iterador is not None:
+            if i == posicion:
+                print(f"El elemento en la posicion {i} tiene como valor {iterador.valor}")
+                break
+            else:
+                iterador = iterador.ptr
+                i += 1
+        if iterador is None:
+            print(f"ERROR. Por favor inserte un valor menor a {i}")
+            
+    def eliminar_nodo_valor(self, valor):
+        if self.verificar_vacio():
+            return
+        iterador = self.__head
+        if iterador.valor == valor:
+            temp = iterador
+            self.__head = iterador.ptr
+            del temp
+            return
+        while iterador is not None:
+            if iterador.ptr is None:
+                print(f"ERROR. No se encontró el valor dentro de la lista.")
+                return
+            nodo_evaluado = iterador.ptr
+            if nodo_evaluado.valor == valor:
+                temp = nodo_evaluado
+                iterador.ptr = nodo_evaluado.ptr
+                del temp
+                return
+            else: 
+                iterador = iterador.ptr
         
     def imprimir_lista_direcciones(self):
         
@@ -127,9 +179,11 @@ class ListaEnlazada:
     def verificar_vacio(self):
         if self.__head is None:
             print(f"La lista actualmente esta vacía.")
+            return True
         else:
             print(f"Actualmente la lista NO esta vacía.")
-            
+            return False
+           
     def imprimir_longitud(self):
         i = 0
         iterador = self.__head
