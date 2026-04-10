@@ -14,7 +14,10 @@ lista.imprimir_longitud()
 
 lista.imprimir_lista()
 
-lista.imprimir_lista_direcciones()
+lista.get_nodo_valor(80)
+lista.get_nodo_valor(40)
 
-lista.buscar_nodo_valor(80)
-lista.buscar_nodo_valor(40)
+lista.eliminar_indexado(2)
+
+lista.imprimir_lista()
+lista.imprimir_longitud()
