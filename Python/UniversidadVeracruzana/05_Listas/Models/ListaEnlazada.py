@@ -8,17 +8,17 @@ class ListaEnlazada:
     def __init__(self):
         self.__head = None # Privatizacion del atributo head
     
-    def insertar_inicio(self, valor):
+    def insertar_inicio(self, dato):
         """
             Este método inserta siempre un nuevo nodo con el valor que se le pase al inicio de la lista
         Args:
             valor (_type_): Cualquier valor que se le desee asignar al nuevo nodo
         """
-        nuevo_nodo = Nodo(valor)
+        nuevo_nodo = Nodo(dato)
         nuevo_nodo.ptr = self.__head
         self.__head = nuevo_nodo
         
-    def insertar_final(self, valor):
+    def insertar_final(self, dato):
         """
             Este método se encarga de recorrer la lista enlazada para llegar al final e insertar un nuevo elemento, evalua si la lista esta vacía y si esta vacía
             llama al método insertar_inicio.
@@ -26,15 +26,15 @@ class ListaEnlazada:
             valor (_type_): Cualquier valor que se le desee asignar al nuevo nodo
         """
         if self.__head is None:
-            self.insertar_inicio(valor)
+            self.insertar_inicio(dato)
         else:
-            nuevo_nodo = Nodo(valor)
+            nuevo_nodo = Nodo(dato)
             iterador = self.__head
             while iterador.ptr is not None:
                 iterador = iterador.ptr
             iterador.ptr = nuevo_nodo
               
-    def insertar_indexado(self, valor, pos):
+    def insertar_indexado(self, dato, pos):
         """
             Este método inserta un nuevo nodo en una posición deseada, primero se le pasa el valor que se inserta y luego la posicion donde se desea insertar
             si la posicion es 0 se llama al método insertar_inicio, si la posicion que se le pasa es mayor a uno el método procede a buscar la posición con un iterador (i)
@@ -48,7 +48,7 @@ class ListaEnlazada:
             return
         pos -= 1 # Esta linea sirve para que el usuario pueda insertar la posicion de manera natural y no tengo que insertar 0
         if pos == 0:
-            self.insertar_inicio(valor)
+            self.insertar_inicio(dato)
         else:
             i = 0
             iterador = self.__head
@@ -56,7 +56,7 @@ class ListaEnlazada:
                 iterador = iterador.ptr
                 i += 1 
             if i == pos-1 and iterador is not None: # Validadión de seguridad para verificar que iterador se quedo en el nodo anterior a la posición deseada
-                nuevo_nodo = Nodo(valor)
+                nuevo_nodo = Nodo(dato)
                 nuevo_nodo.ptr = iterador.ptr
                 iterador.ptr = nuevo_nodo
             else:
@@ -94,11 +94,16 @@ class ListaEnlazada:
                 print(f"Elemento en la posición {pos+1} eliminado correctamente")
                 return
       
-    def eliminar_nodo_valor(self, valor):
+    def eliminar_nodo_valor(self, dato):
+        """
+            Elimina nodos segun el valor que se busque eliminar
+        Args:
+            dato (_type_): Es el dato que se buscará y si se encuentra se eliminará el nodo que lo contenga.
+        """
         if self.verificar_vacio():
             return
         iterador = self.__head
-        if iterador.valor == valor:
+        if iterador.valor == dato:
             temp = iterador
             self.__head = iterador.ptr
             del temp
@@ -108,11 +113,11 @@ class ListaEnlazada:
                 print(f"ERROR. No se encontró el valor dentro de la lista.")
                 return
             nodo_evaluado = iterador.ptr
-            if nodo_evaluado.valor == valor:
+            if nodo_evaluado.valor == dato:
                 temp = nodo_evaluado
                 iterador.ptr = nodo_evaluado.ptr
                 del temp
-                print(f"Elemento con valor {valor} eliminado correctamente")
+                print(f"Elemento con valor {dato} eliminado correctamente")
                 return
             else: 
                 iterador = iterador.ptr
@@ -133,7 +138,7 @@ class ListaEnlazada:
             i += 1
         print("None")
     
-    def get_nodo_valor(self, valor):
+    def get_nodo_valor(self, dato):
         """
             Busca y obtiene la posición del nodo que contiene el valor buscado.
             Además imprime la posición y valor del nodo del que se obtuvo el valor.
@@ -146,7 +151,7 @@ class ListaEnlazada:
             iterador = self.__head
             i = 0
             while iterador is not None:
-                if iterador.valor == valor:
+                if iterador.valor == dato:
                     print(f"Elemento encontrado en la posición {i+1}, valor: {iterador.valor}")
                     break
                 else:
@@ -257,7 +262,7 @@ class ListaEnlazada:
             iterador.ptr = None
             print(f"El último elemento de la lista fue eliminado correctamente.")
             
-    def reemplazar_nodo(self, valor, pos):
+    def reemplazar_nodo(self, dato, pos):
         """
             Reemplaza el nodo COMPLETO de la lista 
         Args:
@@ -274,7 +279,7 @@ class ListaEnlazada:
         i = 0
         
         if pos == 0:
-            nuevo_nodo = Nodo(valor)
+            nuevo_nodo = Nodo(dato)
             nuevo_nodo.ptr = iterador2
             self.__head = nuevo_nodo
         
@@ -284,7 +289,7 @@ class ListaEnlazada:
             iterador2 = iterador2.ptr
             i += 1
 
-        nuevo_nodo = Nodo(valor)
+        nuevo_nodo = Nodo(dato)
         nuevo_nodo.ptr = iterador2.ptr
         iterador.ptr = nuevo_nodo
         
@@ -343,7 +348,6 @@ class ListaEnlazada:
                 iterador2 = iterador2.ptr
         print(f"Lista ordenada correctamente de manera ascendente.")
             
-    
     def ordenar_descendente(self):
         if self.verificar_vacio():
             return
