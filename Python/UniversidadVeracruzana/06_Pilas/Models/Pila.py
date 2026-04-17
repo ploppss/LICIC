@@ -16,7 +16,6 @@ class Pila:
             _bool_: Retorna un booleano para utilizarse dentro de condicionales.
         """
         if self.__top is None:
-            print(f"Actualmente la pila esta vacía.")
             return True
         else:
             return False
@@ -44,6 +43,7 @@ class Pila:
             dato: Devuelve el dato que contiene el elemento tope o cima de la lista.
         """
         if self.verificar_vacio():
+            print(f"Actualmente la pila esta vacía.")
             return
         else:
             return self.__top.dato
@@ -55,6 +55,7 @@ class Pila:
             dato: Devuelve el dato que estaba en la cima o tope antes de eliminarlo.
         """
         if self.verificar_vacio():
+            print(f"Actualmente la pila esta vacía.")
             return
         
         dato = self.__top.dato
@@ -70,6 +71,7 @@ class Pila:
     def imprimir_lista(self):
         
         if self.verificar_vacio():
+            print(f"Actualmente la pila esta vacía.")
             return
         
         iterador = self.__top
@@ -83,6 +85,7 @@ class Pila:
     def clear(self):
         
         if self.verificar_vacio():
+            print(f"Actualmente la pila esta vacía.")
             return
         else:
             self.__top = None
@@ -95,3 +98,56 @@ class Pila:
             int: Tamaño de la pila o cantidad de elementos que almacena
         """
         return self.__size
+    
+    ###############################
+    ### MÉTODOS COMPLEMENTARIOS ###
+    ###############################
+    
+    def concat(self, Pila2):
+
+        pila_temp = Pila()
+        
+        while not Pila2.verificar_vacio():
+            pila_temp.push(Pila2.pop())
+        
+        while not pila_temp.verificar_vacio():
+            self.push(pila_temp.pop())
+            
+        return self
+    
+    def encontrar_mayor(self):
+        
+        if self.verificar_vacio():
+            print(f"Actualmente la pila esta vacía.")
+        
+        pila_temp = Pila()
+        mayor = 0
+        
+        while not self.verificar_vacio():
+            dato = self.pop()
+            
+            if dato > mayor:
+                mayor = dato
+                
+            pila_temp.push(dato)
+        
+        while not pila_temp.verificar_vacio():
+            self.push(pila_temp.pop())
+        
+        return mayor
+
+    def invertir(self):
+        
+        pila_temp1 = Pila()
+        pila_temp2 = Pila()
+        
+        while not self.verificar_vacio():
+            pila_temp1.push(self.pop())
+            
+        while not pila_temp1.verificar_vacio():
+            pila_temp2.push(pila_temp1.pop())
+            
+        while not pila_temp2.verificar_vacio():
+            self.push(pila_temp2.pop())
+
+        
