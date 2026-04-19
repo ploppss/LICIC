@@ -5,6 +5,16 @@ class Ejemplo:
         self._protegido = "2. Protegido"
         self.__privado = 3
     
+    # MÉTODOS
+    def funcion_publica(self):
+        print(f"Hola soy una función pública.")
+        
+    def _funcion_protegida(self):
+        print(f"Hola soy una función protegida.")
+        
+    def __funcion_privada(self): 
+        print(f"Hola soy una función privada.") 
+    
 #########################
 ### GETTERS Y SETTERS ###
 #########################
@@ -15,7 +25,7 @@ class Ejemplo:
     
     def set_privado(self, valor): # SETTER
         # Se puede añadir una validación
-        if valor >= 0:
+        if int(valor) >= 0:
             self.__privado = int(valor)
         else:
             print(f"ERROR. El valor no es un número natural")
@@ -35,12 +45,3 @@ class Ejemplo:
         else:
             print(f"ERROR. El valor no es un número natural")
     
-    # MÉTODOS
-    def funcion_publica(self):
-        print(f"Hola soy una función pública.")
-        
-    def _funcion_protegida(self):
-        print(f"Hola soy una función protegida.")
-        
-    def __funcion_privada(self): 
-        print(f"Hola soy una función privada.") 

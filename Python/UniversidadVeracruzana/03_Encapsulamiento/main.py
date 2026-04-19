@@ -8,7 +8,7 @@ obj = Ejemplo()
 print(obj.publico) 
 obj.funcion_publica()
 
-print("\n")
+print()
 
 # Acceso al atributo y función protegidos INCORRECTO
 print(obj._protegido) # Empieza con un guión bajo
@@ -21,12 +21,13 @@ obj._funcion_protegida()
 #obj.__funcion_privada()
 # A los atributos y metodos privados solo se puede acceder a ellos dentro de la misma clase
 
-print("\n")
+print()
 
 # Acceso al atributo privado MALA PRÁCTICA
-print(obj._Ejemplo__privado) # name mangling
-obj._Ejemplo__funcion_privada() # name mangling
+print(obj._Ejemplo__privado) # name mangling 
+obj._Ejemplo__funcion_privada() # name mangling 
 # Se puede acceder pero rompe el encapsulamiento
+# Se accede por _(NombredelaClase)__(Nombredelatributoometodoprivado)
 
 print("\n")
 
