@@ -36,10 +36,10 @@ try:
             stack2.pop()
         
 except TypeError:
-    print("ERROR. Los símbolos no estan equilibrados")
+    print("ERROR. Los símbolos no estan equilibrados1")
 else:
     if stack.verificar_vacio() and stack2.verificar_vacio():
         print("La expresión está correctamente equilibrada")
     else:
-        print("ERROR. Los símbolos no están equilibrados")
+        print("ERROR. Los símbolos no están equilibrados2")
 

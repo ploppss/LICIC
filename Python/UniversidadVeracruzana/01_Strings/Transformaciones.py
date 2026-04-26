@@ -47,7 +47,7 @@ print(texto.rjust(10, "."))# "....Python" → A la derecha
 texto = "12345"
 
 print(texto.isdigit())# True → Solo dígitos
-print(texto.isalpha())# False → No son solo letras
+print(texto.isalpha())# True → Solo letras
 print("Hola".isalpha())# True → Solo letras 
 print("Hola123".isalnum())# True → Letras y números
 print("python".islower())# True → Solo minúsculas

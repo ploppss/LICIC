@@ -1,6 +1,6 @@
-from Models.Nodo import Nodo
+from Node import Node
 
-class ListaEnlazada:
+class LinkedList:
     """
     Lista enlazada simple
     """
@@ -8,17 +8,17 @@ class ListaEnlazada:
     def __init__(self):
         self.__head = None # Privatizacion del atributo head
     
-    def insertar_inicio(self, valor):
+    def insert_first(self, valor):
         """
             Este método inserta siempre un nuevo nodo con el valor que se le pase al inicio de la lista
         Args:
             valor (_type_): Cualquier valor que se le desee asignar al nuevo nodo
         """
-        nuevo_nodo = Nodo(valor)
+        nuevo_nodo = Node(valor)
         nuevo_nodo.ptr = self.__head
         self.__head = nuevo_nodo
         
-    def insertar_final(self, valor):
+    def insert_end(self, valor):
         """
             Este método se encarga de recorrer la lista enlazada para llegar al final e insertar un nuevo elemento, evalua si la lista esta vacía y si esta vacía
             llama al método insertar_inicio.
@@ -28,13 +28,13 @@ class ListaEnlazada:
         if self.__head is None:
             self.insertar_inicio(valor)
         else:
-            nuevo_nodo = Nodo(valor)
+            nuevo_nodo = Node(valor)
             iterador = self.__head
             while iterador.ptr is not None:
                 iterador = iterador.ptr
             iterador.ptr = nuevo_nodo
               
-    def insertar_indexado(self, valor, pos):
+    def insert_at(self, valor, pos):
         """
             Este método inserta un nuevo nodo en una posición deseada, primero se le pasa el valor que se inserta y luego la posicion donde se desea insertar
             si la posicion es 0 se llama al método insertar_inicio, si la posicion que se le pasa es mayor a uno el método procede a buscar la posición con un iterador (i)
@@ -56,13 +56,13 @@ class ListaEnlazada:
                 iterador = iterador.ptr
                 i += 1 
             if i == pos-1 and iterador is not None: # Validadión de seguridad para verificar que iterador se quedo en el nodo anterior a la posición deseada
-                nuevo_nodo = Nodo(valor)
+                nuevo_nodo = Node(valor)
                 nuevo_nodo.ptr = iterador.ptr
                 iterador.ptr = nuevo_nodo
             else:
                 print(f"ERROR. Posición fuera de alcance, el tamaño de la lista es de {i} elementos")
                       
-    def eliminar_indexado(self, pos):
+    def del_at(self, pos):
         """
             Este método solo necesita recibir una posicion para eliminar el nodo de esa posición, si recibe la primera posición entra a un bloque if donde guarda la 
             dirección donde apunta la cabeza en una referencia temporal, luego a la cabeza se le asigna la referencia que guarda el nodo al que apuntaba la cabeza.
@@ -95,7 +95,7 @@ class ListaEnlazada:
                 iterador.ptr = temp.ptr
                 del temp
 
-    def eliminar_nodo_valor(self, valor):
+    def del_node_value(self, valor):
         if self.verificar_vacio():
             return
         
@@ -118,7 +118,7 @@ class ListaEnlazada:
             else: 
                 iterador = iterador.ptr
                                   
-    def imprimir_lista(self):
+    def print_list(self):
         """
             Imprime la lista ya indexada y con los valores de cada nodo.
         """
@@ -131,7 +131,7 @@ class ListaEnlazada:
             i += 1
         print("None")
     
-    def get_nodo_valor(self, valor):
+    def get_node_value(self, valor):
         """
             Busca y obtiene la posición del nodo que contiene el valor buscado.
             Además imprime la posición y valor del nodo del que se obtuvo el valor.
@@ -155,7 +155,7 @@ class ListaEnlazada:
             print(f"Los elementos dentro de la lista son:")
             self.imprimir_lista()
             
-    def get_nodo_indice(self, posicion):
+    def get_node_index(self, posicion):
         if self.verificar_vacio():
             return
         
@@ -175,7 +175,7 @@ class ListaEnlazada:
         if iterador is None:
             print(f"ERROR. Por favor inserte un valor menor a {i}")
     
-    def imprimir_lista_direcciones(self):
+    def print_dir_list(self):
         
         i = 1
         iterador = self.__head
@@ -195,7 +195,7 @@ class ListaEnlazada:
 
         print("None")
         
-    def verificar_vacio(self):
+    def is_empty(self):
         if self.__head is None:
             print(f"La lista actualmente esta vacía.")
             return True
@@ -203,7 +203,7 @@ class ListaEnlazada:
             print(f"Actualmente la lista NO esta vacía.")
             return False
            
-    def imprimir_longitud(self):
+    def print_len(self):
         i = 0
         iterador = self.__head
         while iterador is not None:

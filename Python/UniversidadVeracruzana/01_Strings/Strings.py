@@ -29,7 +29,7 @@ for letra, in mi_string:
     # en cambio si no se representa con BMP quiere decir que es mayor y se representa con \uXXXXXXXX
     
     if codigo <= 0xFFFF: # Unicode requiere de una diagonal invertida al inicio para estar representado, \u00a1
-        print(f"{letra} -> Representación con formato Unicode: U+ {codigo:04x}, Representación en python \\u{codigo:04x}") # Los caracteres que lleguen a este bloque solo necesitan 2 bytes o 4 digitos hexadecimales para ser representados.
+        print(f"{letra} -> Representación con formato Unicode: u+ {codigo:04x}, Representación en python \\u{codigo:04x}") # Los caracteres que lleguen a este bloque solo necesitan 2 bytes o 4 digitos hexadecimales para ser representados.
     else:
         print(f"{letra} -> Representacion con formato Unicode: U+ {codigo:06x}, Representación en python \\u{codigo:08x}") # Los caracteres que lleguen a este bloque necesitan 4 bytes o 8 digitos hexadecimales para ser representados.
         # Si su representacion necesita mas de 4 digitos hexadecimales, la 'u' del formato ahora tiene que ser mayúscula como se ve en el else

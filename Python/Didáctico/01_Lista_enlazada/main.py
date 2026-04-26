@@ -1,6 +1,6 @@
-from Models.ListaEnlazada import ListaEnlazada
+from Models.LinkedList import LinkedList
 
-lista = ListaEnlazada()
+lista = LinkedList()
 
 lista.verificar_vacio()
 lista.insertar_final(10)

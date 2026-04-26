@@ -17,7 +17,6 @@ class Cola:
             _bool_: Retorna un booleano para utilizarse dentro de condicionales.
         """
         if self.__front is None:
-            print(f"Actualmente la cola esta vacía.")
             return True
         else:
             return False
@@ -61,7 +60,7 @@ class Cola:
         if self.verificar_vacio():
             return
         else:
-            return self.__front.dato
+            return self.__end.dato
 
     def dequeue(self):
         """
@@ -78,20 +77,18 @@ class Cola:
         self.__size -= 1
         
         return dato
-        
-    def get_elemento(self):
-        pass
 
     def imprimir_lista(self):
         
         if self.verificar_vacio():
+            print(f"La cola actualmente está vacía")
             return
         
         iterador = self.__front
         i = 1
         
         while iterador is not None:
-            print(f"Elemento número {i} de la pila, {iterador.dato}")
+            print(f"Elemento número {i} de la cola, {iterador.dato}")
             iterador = iterador.ptr
             i += 1
             
@@ -111,3 +108,102 @@ class Cola:
             int: Tamaño de la pila o cantidad de elementos que almacena
         """
         return self.__size
+
+    ###############################
+    ### MÉTODOS COMPLEMENTARIOS ###
+    ###############################
+    
+    def peek_end2(self):
+        """
+            Devuelve el valor del final de la cola, es decir, el último elemento que se insertó
+        Returns:
+            dato: Devuelve el dato que contiene el último elemento que se insertó dentro de la lista.
+        """
+        if self.verificar_vacio():
+            return
+        else:
+            return self.__end.dato
+        
+    def del_end(self):
+        
+        if self.verificar_vacio():
+            return
+        ant = self.__front
+        act = self.__front.ptr
+        
+        while act is not None:
+            if act.ptr is None:
+                dato = act.dato
+                ant.ptr = None
+                return dato
+            ant = ant.ptr
+            act = act.ptr
+            
+    def find_value(self, valor):
+        
+        if self.verificar_vacio():
+            return
+        
+        iterador = self.__front
+        while iterador is not None:
+            if iterador.dato == valor:
+                return True
+            iterador = iterador.ptr
+        return False
+    
+    def find_major(self):
+        
+        if self.verificar_vacio():
+            return
+        
+        iterador = self.__front
+        mayor = 0
+        
+        while iterador is not None:
+            if mayor < iterador.dato:
+                mayor = iterador.dato
+            iterador = iterador.ptr
+        
+        return mayor
+    
+    def intercalar(self, cola2):
+        queue = Cola()
+        
+        while not self.verificar_vacio() or not cola2.verificar_vacio():
+            queue.enqueue(self.dequeue())
+            queue.enqueue(cola2.dequeue())
+            
+        return queue
+    
+    def invertir(self):
+        
+        if self.verificar_vacio():
+            return
+        
+        lista = []
+        
+        while not self.verificar_vacio():
+            lista.append(self.dequeue())
+        
+        while len(lista) > 0:
+            self.enqueue(lista.pop())
+            
+    def eliminar_duplicados(self):
+        if self.verificar_vacio():
+            return
+
+        iterador = self.__front
+        while iterador is not None:
+            evaluado = iterador.dato  
+            ant = iterador
+            act = iterador.ptr
+
+            while act is not None:
+                if act.dato == evaluado:
+                    ant.ptr = act.ptr
+                    act = ant.ptr 
+                else:
+                    ant = act
+                    act = act.ptr
+            
+            iterador = iterador.ptr
