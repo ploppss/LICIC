@@ -1,4 +1,4 @@
-from Node import Node
+from NodeHash import NodeHash
 
 class LinkedList:
     """
@@ -14,7 +14,7 @@ class LinkedList:
         Args:
             valor (_type_): Cualquier valor que se le desee asignar al nuevo nodo
         """
-        nuevo_nodo = Node(valor)
+        nuevo_nodo = NodeHash(valor)
         nuevo_nodo.ptr = self.__head
         self.__head = nuevo_nodo
         
@@ -28,7 +28,7 @@ class LinkedList:
         if self.__head is None:
             self.insertar_inicio(valor)
         else:
-            nuevo_nodo = Node(valor)
+            nuevo_nodo = NodeHash(valor)
             iterador = self.__head
             while iterador.ptr is not None:
                 iterador = iterador.ptr
@@ -56,7 +56,7 @@ class LinkedList:
                 iterador = iterador.ptr
                 i += 1 
             if i == pos-1 and iterador is not None: # Validadión de seguridad para verificar que iterador se quedo en el nodo anterior a la posición deseada
-                nuevo_nodo = Node(valor)
+                nuevo_nodo = NodeHash(valor)
                 nuevo_nodo.ptr = iterador.ptr
                 iterador.ptr = nuevo_nodo
             else:
@@ -71,7 +71,7 @@ class LinkedList:
         Args:
             pos (_type_): La posicion del nodo que se desea eliminar
         """
-        if self.verificar_vacio(): 
+        if self.is_empty(): 
             return
         if pos <= 0:
             print(f"ERROR. Por favor inserte una posición mayor a 0")
@@ -95,8 +95,8 @@ class LinkedList:
                 iterador.ptr = temp.ptr
                 del temp
 
-    def del_node_value(self, valor):
-        if self.verificar_vacio():
+    def del_NodeHash_value(self, valor):
+        if self.is_empty():
             return
         
         iterador = self.__head
@@ -122,6 +122,8 @@ class LinkedList:
         """
             Imprime la lista ya indexada y con los valores de cada nodo.
         """
+        if self.is_empty():
+            return
         i = 1
         iterador = self.__head
         
@@ -131,14 +133,14 @@ class LinkedList:
             i += 1
         print("None")
     
-    def get_node_value(self, valor):
+    def get_NodeHash_value(self, valor):
         """
             Busca y obtiene la posición del nodo que contiene el valor buscado.
             Además imprime la posición y valor del nodo del que se obtuvo el valor.
         Args:
             valor (_type_): Valor a obtener de la lista
         """
-        if self.verificar_vacio():
+        if self.is_empty():
             return
         
         iterador = self.__head
@@ -155,8 +157,8 @@ class LinkedList:
             print(f"Los elementos dentro de la lista son:")
             self.imprimir_lista()
             
-    def get_node_index(self, posicion):
-        if self.verificar_vacio():
+    def get_NodeHash_index(self, posicion):
+        if self.is_empty():
             return
         
         if posicion <= 0:
@@ -176,6 +178,8 @@ class LinkedList:
             print(f"ERROR. Por favor inserte un valor menor a {i}")
     
     def print_dir_list(self):
+        if self.is_empty():
+            return
         
         i = 1
         iterador = self.__head
@@ -210,3 +214,47 @@ class LinkedList:
             iterador = iterador.ptr
             i += 1
         print(f"El tamaño de la lista es de {i} elementos")
+
+    ############################
+    ### MÉTODOS PARA HASHMAP ###
+    ############################
+    
+    def update_if_exists(self, llave, nuevo_valor):
+        iterador = self.__head
+        while iterador is not None:
+            if iterador.key == llave:
+                iterador.value = nuevo_valor
+                return True
+            iterador = iterador.ptr
+        return False
+    
+    def get_value_key(self, llave):
+        iterador = self.__head
+        
+        while iterador is not None:
+            if llave == iterador.key:
+                return iterador.value
+            iterador = iterador.ptr
+                
+        return None
+    
+    def del_value_key(self, llave):
+        if self.__head.key == llave:
+            dato = self.__head.value
+            self.__head = self.__head.ptr
+            return dato
+        
+        anterior = self.__head
+        iterador = self.__head.ptr
+        
+        while iterador is not None:
+            if llave == iterador.key:
+                dato = iterador.value
+                anterior.ptr = iterador.ptr
+                return dato
+            anterior = anterior.ptr
+            iterador = iterador.ptr
+            
+            return None
+        
+    

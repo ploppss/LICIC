@@ -1,4 +1,4 @@
-class Node:
+class NodeHash:
     def __init__(self, llave, valor):
         self.key = llave
         self.value = valor

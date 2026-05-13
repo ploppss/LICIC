@@ -81,3 +81,20 @@ print(list(it)[2])
 
 print(list(it)[0][0]) # Imprime la 'a'
 print(list(it)[0][1]) # Imprime el 1
+print()
+
+# Devuelve las claves
+print(dic.keys())
+
+# Devuelve el valor asociado a la clave y elimina el par que corresponda a esa clave
+print(dic.pop("a"))
+print(dic)
+
+# Devuelve el valor del último par del diccionario y elimina su par clave-valor
+print(dic.popitem())
+print(dic)
+print()
+
+# Limpia o deja vacío el diccionario
+dic.clear()
+print(dic)
