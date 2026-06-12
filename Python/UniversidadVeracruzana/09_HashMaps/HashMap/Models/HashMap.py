@@ -46,7 +46,7 @@ class HashMap:
         for bucket in old_buckets: # Para cada elemento en la antigua lista buckets
             
             if bucket is not None: # Si el bucket no es None
-                for k, v in bucket: # Para el cada par en el bucket
+                for k, v in bucket: # Para cada par en el bucket
                     self.put(k, v) # Ponerlo dentro de la nueva lista buckets.
         
     #######################
@@ -65,6 +65,12 @@ class HashMap:
         """
         index = self.__hash_function(key) # Genera un índice para el nuevo par
         
+        # Verifica si la llave ya existe, si así es, actualiza el valor de la llave
+        for i, (k, v) in enumerate(self.__buckets[index]):
+            if k == key:
+                self.__buckets[index][i] = (key, value)
+                return 
+            
         # Línea de depuración
         print(f"Llave: {key}, Hash: {hash(key)}, Índice: {index}")
             
@@ -74,12 +80,6 @@ class HashMap:
         self.__buckets[index].append((key, value)) # Se añade la tupla a la lista creada anteriormente
         self.__count += 1 # Se incrementa el contador para llevar el registro del tamaño
         
-        # Verifica si la llave ya existe, si así es, actualiza el valor de la llave
-        for i, (k, v) in enumerate(self.__buckets[index]):
-            if k == key:
-                self.__buckets[index][i] = (key, value)
-                return 
-            
         # Verifica el factor de carga
         load = self.__cont / self.__size 
         
@@ -167,8 +167,7 @@ class HashMap:
             return value # Retorna el valor insertado si es que no existía la llave
         
     def internal_structure(self):
-        """Para cada elemento dentro de la lista buckets imprimir el elemento (otra lista)
-        
+        """Para cada elemento dentro de la lista buckets imprimir el elemento (el elemento es otra lista).
         """
         for i in self.__buckets:
             print(i)
